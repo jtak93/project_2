@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
 
   root 'welcome#index'
-  resources :users, only: [:new, :create, :index]
+  resources :users, only: [:new, :create] do
+    resources :budgets
+  end
+
+  get '/users/:id' => 'users#index'
 
   resources :sessions, only: [:new, :create, :destroy]
   get '/login'  => 'sessions#new'

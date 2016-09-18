@@ -3,10 +3,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect_to users_path, notice: 'Logged in!'
+    @user = User.find_by(email: params[:email])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect_to "/users/#{@user.id}", notice: 'Logged in!'
     else
       redirect_to root_path, alert: 'Invalid login credentials - try again!'
     end

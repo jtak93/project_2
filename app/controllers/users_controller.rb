@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: params[:user_id])
   end
 
   def new
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "You have successfully signed up!"
-      redirect_to root_path
+      redirect_to "/users/#{@user.id}", notice: 'Logged in!'
     else
       render 'new'
     end
