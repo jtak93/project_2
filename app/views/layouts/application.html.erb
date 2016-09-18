@@ -8,18 +8,45 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-
-<p>
-  <% if current_user %>
-    Logged in as: <%= current_user.email %>
-    &nbsp;&nbsp;|&nbsp;&nbsp;
-    <%= link_to 'Log Out', session_path('dummy'), method: :delete %>
-  <% else %>
-    <%= link_to 'Log In', login_path %>
-    &nbsp;&nbsp;|&nbsp;&nbsp;
-    <%= link_to 'Sign Up', new_user_path %>
-  <% end %>
-</p>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Brand</a>
+    </div>
+        <p id="alert"><%= alert %></p>
+        <%= form_tag sessions_path do %>
+        <ul class="nav navbar-nav navbar-right">
+          <% if current_user %>
+            <li class="navbar nav"> Logged in as: <%= current_user.email %> </li>
+            <li><%= link_to 'Log Out', session_path('dummy'), method: :delete %></li>
+          <% else %>
+            <li>
+              <div class="field">
+                <%= label_tag :email %>
+                <%= text_field_tag :email, params[:email] %>
+              </div>
+            </li>
+            <li>
+              <div class="field">
+                <%= label_tag :password %>
+                <%= password_field_tag :password %>
+              </div>
+            </li>
+            <li><div class="actions"><%= submit_tag "Log In" %></div></li>
+            <li><a href="/users/new"><button type="button" class="btn btn-default">Sign Up</button></a></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
 <%= yield %>
 
