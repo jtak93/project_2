@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Budget.destroy_all
+
+Budget.create({
+  type: "",
+  budget: 100000,
+  expenses: 60000,
+  user: User.first
+})
