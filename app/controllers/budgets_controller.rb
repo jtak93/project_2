@@ -4,6 +4,7 @@ class BudgetsController < ApplicationController
 
   def new
     @budget = Budget.new
+    @user = User.find_by(id: params[:user_id])
   end
 
   def edit
