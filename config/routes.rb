@@ -1,26 +1,11 @@
 Rails.application.routes.draw do
 
-
-  get 'expenses/index'
-
-  get 'expenses/new'
-
-  get 'expenses/show'
-
-  get 'expenses/create'
-
-  get 'expenses/edit'
-
-  get 'expenses/update'
-
-  get 'expenses/destroy'
-
   root 'welcome#index'
   resources :users, only: [:show, :new, :create] do
-    resource :budgets
+    resources :budgets do
+      resources :expenses
+    end
   end
-
-  post '/users/:user_id/budgets' => 'budgets#create'
 
   resources :sessions, only: [:new, :create, :destroy]
   get '/login'  => 'sessions#new'
