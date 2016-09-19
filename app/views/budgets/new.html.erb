@@ -16,11 +16,8 @@
   </div>
   <div class="field">
     <%= f.label :month %>
-    <%= f.number_field :month, :class => 'text_field', in: 1..12, :step => 1 %>
-  </div>
-  <div class="field">
-    <%= f.label :year %>
-    <%= f.select :year, (Time.zone.now.year - 5)..(Time.zone.now.year + 10) %>
+    <%= select_tag "month_year", options_for_select(@months) %>
+
   </div>
   <div class="actions"><%= f.submit "Create" %></div>
   <% end %>

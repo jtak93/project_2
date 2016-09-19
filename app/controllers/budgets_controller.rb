@@ -1,5 +1,6 @@
 class BudgetsController < ApplicationController
   def index
+    @budgets = Budget.where(user_id: current_user.id)
   end
 
   def show
@@ -9,6 +10,11 @@ class BudgetsController < ApplicationController
   def new
     @budget = Budget.new
     @user = User.find_by(id: params[:user_id])
+    @date = Date.today
+    @months = []
+    (0..11).each do |m|
+      @months << [@date.next_month(m).strftime("%b %Y"), @date.next_month(m)]
+    end
   end
 
   def edit

@@ -1,1 +1,23 @@
 <h1>budgets</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Amount</th>
+      <th>Date</th>
+      <th>Expenses</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @budgets.each do |budget| %>
+      <tr>
+        <td><%= budget.budget_type %></td>
+        <td><%= budget.budget %></td>
+        <td><%= budget.date %></td>
+        <td><%= budget.expenses %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

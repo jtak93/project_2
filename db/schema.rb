@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160919180901) do
+ActiveRecord::Schema.define(version: 20160919192754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,45 +20,40 @@ ActiveRecord::Schema.define(version: 20160919180901) do
     t.string   "budget_type"
     t.float    "budget"
     t.float    "expenses"
+    t.date     "date"
     t.integer  "user_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "month",       default: 9
-    t.integer  "year",        default: 2016
-  end
-
-  create_table "expense_categories", force: :cascade do |t|
-    t.integer  "expense_id"
-    t.string   "expense_cat"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "expense_categories", ["expense_id"], name: "index_expense_categories_on_expense_id", using: :btree
+  add_index "budgets", ["user_id"], name: "index_budgets_on_user_id", using: :btree
+
+  create_table "expense_categories", force: :cascade do |t|
+    t.string   "expense_category"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "expenses", force: :cascade do |t|
-    t.integer  "expense_cat_id"
     t.float    "amount"
-    t.string   "date"
+    t.date     "date"
     t.integer  "budget_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "expense_category_id"
   end
 
   add_index "expenses", ["budget_id"], name: "index_expenses_on_budget_id", using: :btree
+  add_index "expenses", ["expense_category_id"], name: "index_expenses_on_expense_category_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
-    t.string   "f_name"
-    t.string   "l_name"
-    t.string   "date_of_birth"
     t.string   "password_digest"
-    t.float    "budget"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
   add_foreign_key "budgets", "users"
-  add_foreign_key "expense_categories", "expenses"
   add_foreign_key "expenses", "budgets"
+  add_foreign_key "expenses", "expense_categories"
 end
