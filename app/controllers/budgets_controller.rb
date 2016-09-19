@@ -40,7 +40,7 @@ class BudgetsController < ApplicationController
 private
 
   def budget_params
-    params.require(:budget).permit(:budget_type, :budget)
+    params.require(:budget).permit(:budget_type, :budget, :budget_date)
   end
 
 end

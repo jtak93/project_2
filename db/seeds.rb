@@ -10,13 +10,13 @@ ExpenseCategory.destroy_all
 
 u1 = User.create(email: "test@email.com", password: "1234", password_confirmation: "1234")
 
-b1 = Budget.create(budget: 5000, date: Date.current.strftime("%b %Y"), user: u1)
+b1 = Budget.create(budget: 5000, budget_date: Date.current.strftime("%b %Y"), user: u1)
 
 ec1 = ExpenseCategory.create(expense_category: "Housing")
 ec2 = ExpenseCategory.create(expense_category: "Automobile")
 ec3 = ExpenseCategory.create(expense_category: "Food")
 
-e1 = Expense.create(amount:300, date: Date.current, budget: b1, expense_category_id: ec1.id)
+e1 = Expense.create(amount:300, expense_date: Date.current, budget: b1, expense_category_id: ec1.id)
 
 
 
