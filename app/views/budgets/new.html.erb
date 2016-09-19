@@ -1,2 +1,22 @@
-<h1>Budgets#new</h1>
-<p>Find me in app/views/budgets/new.html.erb</p>
+<h1>New Budget</h1>
+  <%= form_for @budget, url: {action: "create"} do |f| %>
+  <% if @budget.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @budget.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :budget_type %>
+    <%= f.text_field :budget_type %>
+  </div>
+  <div class="field">
+    <%= f.label :budget %>
+    <%= f.number_field :budget, :class => 'text_field', :step => 0.01 %>
+  </div>
+  <div class="actions"><%= f.submit "Create" %></div>
+  <% end %>
