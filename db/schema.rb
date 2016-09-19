@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160919163213) do
+ActiveRecord::Schema.define(version: 20160919175111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,26 @@ ActiveRecord::Schema.define(version: 20160919163213) do
     t.integer  "year",        default: 2016
   end
 
+  create_table "expense_categories", force: :cascade do |t|
+    t.integer  "expense_id"
+    t.string   "expense_cat"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "expense_categories", ["expense_id"], name: "index_expense_categories_on_expense_id", using: :btree
+
+  create_table "expenses", force: :cascade do |t|
+    t.integer  "expense_cat_id"
+    t.float    "amount"
+    t.string   "date"
+    t.integer  "budget_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "expenses", ["budget_id"], name: "index_expenses_on_budget_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "f_name"
@@ -38,4 +58,6 @@ ActiveRecord::Schema.define(version: 20160919163213) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "expense_categories", "expenses"
+  add_foreign_key "expenses", "budgets"
 end
