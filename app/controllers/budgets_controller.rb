@@ -12,6 +12,7 @@ class BudgetsController < ApplicationController
   def create
     @budget = Budget.new(budget_params)
     @user = User.find_by(id: params[:user_id])
+    @budget.assign_attributes({:user_id => @user.id})
     if @budget.save
       flash[:notice] = "You have successfully created a new budget!"
     else
