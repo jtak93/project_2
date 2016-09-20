@@ -8,7 +8,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-custom">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -23,23 +23,23 @@
         <%= form_tag sessions_path do %>
         <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
-            <li class="navbar nav"> Logged in as: <%= current_user.email %> </li>
+            <li><a href="/users/<%= current_user.id %>">Logged in as: <%= current_user.email %></a></li>
             <li><%= link_to 'Log Out', session_path('dummy'), method: :delete %></li>
           <% else %>
+            <li><%= label_tag :email %></li>
             <li>
               <div class="field">
-                <%= label_tag :email %>
-                <%= text_field_tag :email, params[:email] %>
+                <%= text_field_tag :email, params[:email], class: "form-control", placeholder: "Email" %>
               </div>
             </li>
+            <li><%= label_tag :password %></li>
             <li>
               <div class="field">
-                <%= label_tag :password %>
-                <%= password_field_tag :password %>
+                <%= password_field_tag :password, nil, class: "form-control", placeholder: "Password" %>
               </div>
             </li>
-            <li><div class="actions"><%= submit_tag "Log In" %></div></li>
-            <li><a href="/users/new"><button type="button" class="btn btn-default">Sign Up</button></a></li>
+            <li><button type="submit" class="btn btn-default form-control" id="login-btn">Login</button></li>
+            <li><a href="/users/new"><button type="button" class="btn btn-default" id="signup-btn">Sign Up</button></a></li>
           <% end %>
         <% end %>
       </ul>
