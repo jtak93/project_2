@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:user_id])
-    @budgets = current_user.budgets
+    @current_budget = current_user.budgets.order("budget_date").last
   end
 
   def new
@@ -23,6 +23,6 @@ class UsersController < ApplicationController
 private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :user_id)
   end
 end

@@ -46,8 +46,8 @@
     <div class="jumbotron" id="monthly">
       <div class="container">
         <%= link_to 'Create new budget', "/users/#{current_user.id}/budgets/new" %>
-        <p><%= @budgets.first.budget_type %></p>
-        <p><%= @budgets.first.budget %></p>
+        <p><%= @current_budget.budget_type %></p>
+        <p><%= @current_budget.budget %></p>
       </div>
     </div>
   </div>
