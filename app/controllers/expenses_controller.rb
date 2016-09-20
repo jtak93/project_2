@@ -1,5 +1,6 @@
 class ExpensesController < ApplicationController
   def index
+    @expenses = Expense.where(budget_id: params[:budget_id])
   end
 
   def new
@@ -15,8 +16,9 @@ class ExpensesController < ApplicationController
     @budget = Budget.find_by(id: params[:budget_id])
     @expense.assign_attributes({:budget_id => @budget.id})
     if @expense.save
-      flash[:notice] = "You have successfully created a new budget!"
-      redirect_to "/users/#{current_user.id}/budgets/#{@expense.id}/expenses"
+      @budget[:expenses] += @expense.amount
+      @budget.save
+      redirect_to "/users/#{current_user.id}/budgets/#{@budget.id}/expenses"
     else
       render 'new'
     end

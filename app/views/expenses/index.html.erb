@@ -1,2 +1,16 @@
 <h1>Expenses#index</h1>
-<p>Find me in app/views/expenses/index.html.erb</p>
+<div class="container">
+  <% @sum = 0 %>
+  <% @expenses.each do |e| %>
+    <p>
+      <%= e.id %>
+      &nbsp;&nbsp; | &nbsp;&nbsp;
+      <%= e.amount %>
+    </p>
+    <% @sum += e.amount %>
+  <% end %>
+  <p>
+    <%= @sum %>
+  </p>
+</div>
+

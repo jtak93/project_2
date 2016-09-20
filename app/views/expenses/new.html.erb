@@ -16,7 +16,7 @@
   </div>
   <div class="field">
     <%= f.label :amount %>
-    <%= f.number_field :amount, :class => 'text_field', :step => 0.01 %>
+    <%= f.number_field :amount, :class => 'text_field', min: 0, :step => 0.01 %>
   </div>
   <div class="field">
     <%= f.label :expense_date %>
