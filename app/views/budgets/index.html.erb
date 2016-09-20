@@ -21,3 +21,10 @@
     <% end %>
   </tbody>
 </table>
+<p>
+<% current_user.budgets.each do |b| %>
+<%= link_to 'Show Budget', "/users/#{current_user.id}/budgets/#{b.id}/expenses" %>
+<% end %>
+</p>
+
+<%= link_to 'New Budget', new_user_budget_path %>

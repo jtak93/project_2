@@ -31,6 +31,7 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
+
   end
 
 private

@@ -4,7 +4,7 @@ class BudgetsController < ApplicationController
   end
 
   def show
-    @budgets = current_user.budgets
+    @budget = Budget.where(budget_id: params[:budget_id])
   end
 
   def new
