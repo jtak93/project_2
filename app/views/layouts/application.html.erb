@@ -26,13 +26,13 @@
             <li><a href="/users/<%= current_user.id %>">Logged in as: <%= current_user.email %></a></li>
             <li><%= link_to 'Log Out', session_path('dummy'), method: :delete %></li>
           <% else %>
-            <li><%= label_tag :email %></li>
+            <li><%= label_tag :email %>:</li>
             <li>
               <div class="field">
                 <%= text_field_tag :email, params[:email], class: "form-control", placeholder: "Email" %>
               </div>
             </li>
-            <li><%= label_tag :password %></li>
+            <li><%= label_tag :password %>:</li>
             <li>
               <div class="field">
                 <%= password_field_tag :password, nil, class: "form-control", placeholder: "Password" %>

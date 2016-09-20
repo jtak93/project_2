@@ -2,7 +2,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:user_id])
-    @current_budget = current_user.budgets.order("budget_date").last
+    @current_budget = Budget.find_by(budget_date: Date.current.beginning_of_month)
+    @percentage = (@current_budget[:expenses]/@current_budget.budget) * 100
   end
 
   def new
