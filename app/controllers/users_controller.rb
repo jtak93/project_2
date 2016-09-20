@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
 
   def show
-    @user = User.find_by(id: params[:user_id])
+    @budgets = current_user.budgets
+    @current_year_budgets = @budgets.select { |budget| budget.budget_date.year == Date.current.year }
+    @annual_budget_projection = @current_year_budgets.map(&:budget).reduce(&:+)
+    @annual_expenses = @current_year_budgets.map(&:expense_total).reduce(&:+)
     @current_budget = Budget.find_by(budget_date: Date.current.beginning_of_month)
-    @percentage = (@current_budget[:expenses]/@current_budget.budget) * 100
+    @month_percentage = ((@current_budget.expense_total/@current_budget.budget) * 100).round(2)
+    @annual_percentage = ((@annual_expenses / @annual_budget_projection) * 100).round(2)
   end
 
   def new

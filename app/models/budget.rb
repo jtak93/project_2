@@ -9,7 +9,7 @@ class Budget < ActiveRecord::Base
 
   def set_defaults
     self.budget_type  ||= 'monthly'
-    self[:expenses] = 0
+    self.expense_total ||= 0
   end
 
 end

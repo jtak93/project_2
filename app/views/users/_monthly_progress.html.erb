@@ -3,12 +3,12 @@
 <h6>Budget Used:</h6>
 <div class="progress">
   <div class="progress-bar progress-bar-striped active progress-bar-danger" role="progressbar"
-  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<%= @percentage.to_s %>%">
-    <%= @percentage.to_s %>%
+  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<%= @month_percentage.to_s %>%">
+    <%= @month_percentage.to_s %>%
   </div>
 </div>
 <p>
-  <%= @current_budget[:expenses].to_s %>
+  <%= @current_budget.expense_total.to_s %>
   /
   <%= @current_budget.budget.to_s %>
 </p>

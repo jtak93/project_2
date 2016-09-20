@@ -16,7 +16,7 @@ class ExpensesController < ApplicationController
     @budget = Budget.find_by(id: params[:budget_id])
     @expense.assign_attributes({:budget_id => @budget.id})
     if @expense.save
-      @budget[:expenses] += @expense.amount
+      @budget.expense_total += @expense.amount
       @budget.save
       redirect_to "/users/#{current_user.id}/budgets/#{@budget.id}/expenses"
     else

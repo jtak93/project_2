@@ -1,0 +1,13 @@
+<h2>Goal For Fiscal Year: <%= Date.current.strftime("%Y") %></h2>
+<h6>Budget Used:</h6>
+<div class="progress">
+  <div class="progress-bar progress-bar-striped active progress-bar-danger" role="progressbar"
+  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<%= @annual_percentage.to_s %>%">
+    <%= @annual_percentage.to_s %>%
+  </div>
+</div>
+<p>
+  <%= @annual_expenses.to_s %>
+  /
+  <%= @annual_budget_projection.to_s %>
+</p>
