@@ -1,2 +1,22 @@
 <h1>Budgets#edit</h1>
-<p>Find me in app/views/budgets/edit.html.erb</p>
+  <%= form_for @budget, url: {action: "update"} do |f| %>
+  <% if @budget.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @budget.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :budget %>
+    <%= f.number_field :budget, :class => 'text_field', :step => 0.01 %>
+  </div>
+  <div class="field">
+    <%= f.label :budget_date %>
+    <%= f.date_select :budget_date, discard_day: true %>
+  </div>
+  <div class="actions"><%= f.submit "Create" %></div>
+  <% end %>

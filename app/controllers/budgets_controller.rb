@@ -13,6 +13,7 @@ class BudgetsController < ApplicationController
   end
 
   def edit
+    @budget = Budget.find_by(id: params[:id])
   end
 
   def create
@@ -21,13 +22,16 @@ class BudgetsController < ApplicationController
     @budget.assign_attributes({:user_id => @user.id})
     if @budget.save
       flash[:notice] = "You have successfully created a new budget!"
-      redirect_to "/users/#{current_user.id}/budgets", notice: 'Logged in!'
+      redirect_to "/users/#{current_user.id}/budgets", notice: 'Budget Created!'
     else
       render 'new'
     end
   end
 
   def update
+    @budget = Budget.find_by(id: params[:id])
+    @budget.update(budget_params)
+    redirect_to "/users/#{current_user.id}/budgets"
   end
 
   def destroy

@@ -25,9 +25,12 @@ class ExpensesController < ApplicationController
   end
 
   def edit
+    @expense = Expense.find_by(id: params[:id])
   end
 
   def update
+    @expense = Expense.find_by(id: params[:id])
+    @expense.update(expense_params)
   end
 
   def destroy

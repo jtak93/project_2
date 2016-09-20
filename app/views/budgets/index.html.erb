@@ -1,30 +1,21 @@
 <h1>budgets</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Amount</th>
-      <th>Date</th>
-      <th>Expenses</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @budgets.each do |budget| %>
-      <tr>
-        <td><%= budget.budget_type %></td>
-        <td><%= budget.budget %></td>
-        <td><%= budget.budget_date %></td>
-        <td><%= budget[:expenses] %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<p>
-<% current_user.budgets.each do |b| %>
-<%= link_to 'Show Budget', "/users/#{current_user.id}/budgets/#{b.id}/expenses" %>
+<% @budgets.each do |b| %>
+  <p>
+    Expense id: <%= b.id %>
+    &nbsp;&nbsp; | &nbsp;&nbsp;
+    <%= b.budget_type %>
+    &nbsp;&nbsp; | &nbsp;&nbsp;
+    <%= b.budget %>
+    &nbsp;&nbsp; | &nbsp;&nbsp;
+    <%= b.budget_date %>
+    &nbsp;&nbsp; | &nbsp;&nbsp;
+    <%= b[:expenses] %>
+    &nbsp;&nbsp; | &nbsp;&nbsp;
+    <%= link_to 'Show Expenses', "/users/#{current_user.id}/budgets/#{b.id}/expenses" %>
+    &nbsp;&nbsp; | &nbsp;&nbsp;
+    <%= link_to 'Edit Budget', "/users/#{current_user.id}/budgets/#{b.id}/edit" %>
+  </p>
 <% end %>
-</p>
 
 <%= link_to 'New Budget', new_user_budget_path %>
