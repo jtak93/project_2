@@ -3,14 +3,20 @@
   <% @sum = 0 %>
   <% @expenses.each do |e| %>
     <p>
-      <%= e.id %>
+      Expense id: <%= e.id %>
       &nbsp;&nbsp; | &nbsp;&nbsp;
       <%= e.amount %>
+      &nbsp;&nbsp; | &nbsp;&nbsp;
+      <%= e.expense_category[:expense_category] %>
     </p>
     <% @sum += e.amount %>
   <% end %>
   <p>
+    Sum:
+    &nbsp;&nbsp; | &nbsp;&nbsp;
     <%= @sum %>
   </p>
 </div>
+
+<%= link_to 'Add Expense', new_user_budget_expense_path %>
 
