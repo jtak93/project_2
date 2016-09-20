@@ -4,17 +4,12 @@ class BudgetsController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:user_id])
+    @budgets = current_user.budgets
   end
 
   def new
     @budget = Budget.new
     @user = User.find_by(id: params[:user_id])
-    @date = Date.today
-    @months = []
-    (0..11).each do |m|
-      @months << [@date.next_month(m).strftime("%b %Y"), @date.next_month(m)]
-    end
   end
 
   def edit
@@ -26,6 +21,7 @@ class BudgetsController < ApplicationController
     @budget.assign_attributes({:user_id => @user.id})
     if @budget.save
       flash[:notice] = "You have successfully created a new budget!"
+      redirect_to "/users/#{current_user.id}/budgets", notice: 'Logged in!'
     else
       render 'new'
     end
