@@ -12,9 +12,8 @@ class BudgetsController < ApplicationController
     if @annual_expenses == nil
       @annual_expenses = 0
     end
-    @current_budget = @budgets.find_by(budget_date: Date.current.beginning_of_month)
-    unless (@current_budget == nil)
-      binding.pry
+    @current_budget = @budgets.find(params[:id])
+    unless @current_budget == nil
       @month_percentage = ((@current_budget.expense_total/@current_budget.budget) * 100).round(2)
       @annual_percentage = ((@annual_expenses / @annual_budget_projection) * 100).round(2)
     end
