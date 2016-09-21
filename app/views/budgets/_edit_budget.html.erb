@@ -1,0 +1,17 @@
+  <%= form_for @current_budget, url: {action: "update"} do |f| %>
+    <% if @current_budget.errors.any? %>
+      <div class="error_messages">
+        <h2>Form is invalid</h2>
+        <ul>
+          <% for message in @current_budget.errors.full_messages %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :budget %>
+      <%= f.number_field :budget, :class => 'text_field', :step => 0.01 %>
+    </div>
+    <div class="actions"><%= f.submit "Edit" %></div>
+  <% end %>

@@ -18,6 +18,9 @@ class BudgetsController < ApplicationController
       @month_percentage = ((@current_budget.expense_total/@current_budget.budget) * 100).round(2)
       @annual_percentage = ((@annual_expenses / @annual_budget_projection) * 100).round(2)
     end
+    #for modal views
+    @edit_path = "budgets/edit_budget"
+    @expenses_path = "expenses/expenses_display"
   end
 
   def new
