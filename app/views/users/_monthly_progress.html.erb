@@ -1,4 +1,5 @@
 
+<% unless @current_budget == nil %>
 <h2>For <%= @current_budget.budget_date.strftime("%B, %Y") %></h2>
 <h6>Budget Used:</h6>
 <div class="progress">
@@ -12,3 +13,4 @@
   /
   <%= @current_budget.budget.to_s %>
 </p>
+<% end %>

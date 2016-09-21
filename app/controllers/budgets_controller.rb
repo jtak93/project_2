@@ -4,12 +4,24 @@ class BudgetsController < ApplicationController
   end
 
   def show
-    @budget = Budget.where(budget_id: params[:budget_id])
+    @budgets = current_user.budgets
+    @current_year_budgets = @budgets.select { |budget| budget.budget_date.year == Date.current.year }
+    # @current_year_budgets_order = @current_year_budgets.order(:budget_date)
+    @annual_budget_projection = @current_year_budgets.map(&:budget).reduce(&:+)
+    @annual_expenses = @current_year_budgets.map(&:expense_total).reduce(&:+)
+    if @annual_expenses == nil
+      @annual_expenses = 0
+    end
+    @current_budget = @budgets.find_by(budget_date: Date.current.beginning_of_month)
+    unless (@current_budget == nil)
+      binding.pry
+      @month_percentage = ((@current_budget.expense_total/@current_budget.budget) * 100).round(2)
+      @annual_percentage = ((@annual_expenses / @annual_budget_projection) * 100).round(2)
+    end
   end
 
   def new
     @budget = Budget.new
-    @user = User.find_by(id: params[:user_id])
   end
 
   def edit
@@ -18,11 +30,10 @@ class BudgetsController < ApplicationController
 
   def create
     @budget = Budget.new(budget_params)
-    @user = User.find_by(id: params[:user_id])
-    @budget.assign_attributes({:user_id => @user.id})
+    @budget.user = current_user
     if @budget.save
       flash[:notice] = "You have successfully created a new budget!"
-      redirect_to "/users/#{current_user.id}/budgets", notice: 'Budget Created!'
+      redirect_to "/budgets", notice: 'Budget Created!'
     else
       render 'new'
     end
@@ -31,7 +42,7 @@ class BudgetsController < ApplicationController
   def update
     @budget = Budget.find_by(id: params[:id])
     @budget.update(budget_params)
-    redirect_to "/users/#{current_user.id}/budgets"
+    redirect_to "/budgets"
   end
 
   def destroy

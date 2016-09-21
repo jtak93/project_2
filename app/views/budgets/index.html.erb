@@ -12,10 +12,10 @@
     &nbsp;&nbsp; | &nbsp;&nbsp;
     <%= b[:expenses] %>
     &nbsp;&nbsp; | &nbsp;&nbsp;
-    <%= link_to 'Show Expenses', "/users/#{current_user.id}/budgets/#{b.id}/expenses" %>
+    <%= link_to 'Show Expenses', "/budgets/#{b.id}/expenses" %>
     &nbsp;&nbsp; | &nbsp;&nbsp;
-    <%= link_to 'Edit Budget', "/users/#{current_user.id}/budgets/#{b.id}/edit" %>
+    <%= link_to 'Edit Budget', "/budgets/#{b.id}/edit" %>
   </p>
 <% end %>
 
-<%= link_to 'New Budget', new_user_budget_path %>
+<%= link_to 'New Budget', new_budget_path %>

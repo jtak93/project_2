@@ -9,7 +9,7 @@
       &nbsp;&nbsp; | &nbsp;&nbsp;
       <%= e.expense_category[:expense_category] %>
       &nbsp;&nbsp; | &nbsp;&nbsp;
-      <%= link_to 'Edit Expense', "/users/1/budgets/13/expenses/#{e.id}/edit" %>
+      <%= link_to 'Edit Expense', "/budgets/#{params[:budget_id]}/expenses/#{e.id}/edit" %>
     </p>
     <% @sum += e.amount %>
   <% end %>
@@ -20,6 +20,6 @@
   </p>
 </div>
 
-<%= link_to 'Add Expense', new_user_budget_expense_path %>
+<%= link_to 'Add Expense', new_budget_expense_path %>
 
 

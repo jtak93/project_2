@@ -14,11 +14,11 @@ class ExpensesController < ApplicationController
   def create
     @expense = Expense.new(expense_params)
     @budget = Budget.find_by(id: params[:budget_id])
-    @expense.assign_attributes({:budget_id => @budget.id})
+    @expense.budget = @budget
     if @expense.save
       @budget.expense_total += @expense.amount
       @budget.save
-      redirect_to "/users/#{current_user.id}/budgets/#{@budget.id}/expenses"
+      redirect_to "/budgets/#{@budget.id}/expenses"
     else
       render 'new'
     end
@@ -31,6 +31,7 @@ class ExpensesController < ApplicationController
   def update
     @expense = Expense.find_by(id: params[:id])
     @expense.update(expense_params)
+    redirect_to "/budgets/#{@budget.id}/expenses"
   end
 
   def destroy
