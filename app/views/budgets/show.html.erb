@@ -15,6 +15,27 @@
       <%= link_to 'Create new budget', "/budgets/new" %>
       <%= link_to 'Edit Budget', "/budgets/#{params[:id]}/edit" %>
       <%= link_to 'Show Expenses', "/budgets/#{params[:id]}/expenses" %>
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Show Expenses</button>
+        <!-- Modal -->
+        <div id="myModal" class="modal" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+              </div>
+              <div class="modal-body">
+                <%= render "expenses/expenses_display" %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
     </div>
   </div>
   <div class="jumbotron" id="annual">

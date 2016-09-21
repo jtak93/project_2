@@ -1,0 +1,22 @@
+<div class="container">
+  <% @sum = 0 %>
+  <% @expenses.each do |e| %>
+    <p>
+      Expense id: <%= e.id %>
+      &nbsp;&nbsp; | &nbsp;&nbsp;
+      <%= e.amount %>
+      &nbsp;&nbsp; | &nbsp;&nbsp;
+      <%= e.expense_category[:expense_category] %>
+      &nbsp;&nbsp; | &nbsp;&nbsp;
+      <%= link_to 'Edit Expense', "/budgets/#{params[:budget_id]}/expenses/#{e.id}/edit" %>
+      <%= link_to 'Destroy', "/budgets/#{params[:budget_id]}/expenses/#{e.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
+    </p>
+    <% @sum += e.amount %>
+  <% end %>
+  <p>
+    Sum:
+    &nbsp;&nbsp; | &nbsp;&nbsp;
+    <%= @sum %>
+  </p>
+</div>
+
