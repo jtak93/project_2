@@ -35,7 +35,12 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
-
+    @budget = Budget.find_by(id: params[:budget_id])
+    @expense = Expense.find_by(id: params[:id])
+    @budget.expense_total -= @expense.amount
+    @budget.save
+    @expense.destroy
+    redirect_to "/budgets/#{@budget.id}/expenses"
   end
 
 private

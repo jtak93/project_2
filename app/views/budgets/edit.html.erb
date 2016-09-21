@@ -14,9 +14,5 @@
     <%= f.label :budget %>
     <%= f.number_field :budget, :class => 'text_field', :step => 0.01 %>
   </div>
-  <div class="field">
-    <%= f.label :budget_date %>
-    <%= f.date_select :budget_date, discard_day: true %>
-  </div>
   <div class="actions"><%= f.submit "Create" %></div>
   <% end %>
