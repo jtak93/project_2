@@ -6,20 +6,20 @@
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Monthly Budgets
         <span class="caret"></span></button>
         <ul class="dropdown-menu">
-          <% @current_year_budgets.each do |b| %>
+          <% @current_year_budgets_order.each do |b| %>
           <li><a href=<%= "/budgets/#{b.id}" %>><%= b.budget_date.strftime("%B, %Y") %></a></li>
           <% end %>
         </ul>
       </div>
-      <%= render "/users/monthly_progress" %>
-      <%= render "users/new_budget_modal" %>
-      <%= render "users/edit_budget_modal" %>
-      <%= render "users/show_expenses_modal" %>
+      <%= render "monthly_progress" %>
+      <%= render "new_budget_modal" %>
+      <%= render "edit_budget_modal" %>
+      <%= render "show_expenses_modal" %>
     </div>
   </div>
   <div class="jumbotron" id="annual">
     <div class="container">
-      <%= render "/users/annual_progress" %>
+      <%= render "annual_progress" %>
     </div>
   </div>
 
