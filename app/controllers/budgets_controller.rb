@@ -7,8 +7,8 @@ class BudgetsController < ApplicationController
     @budgets = current_user.budgets
     @current_year_budgets = @budgets.select { |budget| budget.budget_date.year == Date.current.year }
     # @current_year_budgets_order = @current_year_budgets.order(:budget_date)
-    @annual_budget_projection = @current_year_budgets.map(&:budget).reduce(&:+)
-    @annual_expenses = @current_year_budgets.map(&:expense_total).reduce(&:+)
+    @annual_budget_projection = @current_year_budgets.map(&:budget).reduce(&:+).round(2)
+    @annual_expenses = @current_year_budgets.map(&:expense_total).reduce(&:+).round(2)
     if @annual_expenses == nil
       @annual_expenses = 0
     end
