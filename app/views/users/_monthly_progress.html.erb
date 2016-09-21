@@ -2,12 +2,28 @@
 <% unless @current_budget == nil %>
 <h2>For <%= @current_budget.budget_date.strftime("%B, %Y") %></h2>
 <h6>Budget Used:</h6>
-<div class="progress">
-  <div class="progress-bar progress-bar-striped active progress-bar-danger" role="progressbar"
-  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<%= @month_percentage.to_s %>%">
-    <%= @month_percentage.to_s %>%
+<% if @month_percentage < 40 %>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped active progress-bar-success" role="progressbar"
+    aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<%= @month_percentage.to_s %>%">
+      <%= @month_percentage.to_s %>%
+    </div>
   </div>
-</div>
+<% elsif @month_percentage < 80 %>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped active progress-bar-warning" role="progressbar"
+    aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<%= @month_percentage.to_s %>%">
+      <%= @month_percentage.to_s %>%
+    </div>
+  </div>
+<% else %>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped active progress-bar-danger" role="progressbar"
+    aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<%= @month_percentage.to_s %>%">
+      <%= @month_percentage.to_s %>%
+    </div>
+  </div>
+<% end %>
 <p>
   <%= @current_budget.expense_total.to_s %>
   /
