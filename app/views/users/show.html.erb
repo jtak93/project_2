@@ -17,6 +17,7 @@
       </div>
       <%= render "monthly_progress" %>
       <%= link_to 'Create new budget', "/budgets/new" %>
+      <%= link_to 'Edit Budget', "/budgets/#{@current_budget.id}/edit" %>
       <%= link_to 'Show Expenses', "/budgets/#{@current_budget.id}/expenses" %>
     </div>
   </div>

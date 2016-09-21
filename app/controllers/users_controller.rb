@@ -24,8 +24,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      binding.pry
-      Budget.create(budget: 1000, expense_total: 0, user: @user, budget_date: Date.current.beginning_of_month)
+      Budget.create(budget: 3000, expense_total: 0, user: @user, budget_date: Date.current.beginning_of_month)
       flash[:notice] = "You have successfully signed up!"
       redirect_to "/users/#{@user.id}", notice: 'Logged in!'
     else
