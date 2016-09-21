@@ -4,6 +4,7 @@ class BudgetsController < ApplicationController
   end
 
   def show
+    @new_budget = Budget.new
     @budgets = current_user.budgets
     @current_year_budgets = @budgets.select { |budget| budget.budget_date.year == Date.current.year }
     # @current_year_budgets_order = @current_year_budgets.order(:budget_date)
@@ -21,6 +22,7 @@ class BudgetsController < ApplicationController
     #for modal views
     @edit_path = "budgets/edit_budget"
     @expenses_path = "expenses/expenses_display"
+    @new_budget_path = "budgets/new_budget"
   end
 
   def new
@@ -36,7 +38,7 @@ class BudgetsController < ApplicationController
     @budget.user = current_user
     if @budget.save
       flash[:notice] = "You have successfully created a new budget!"
-      redirect_to "/budgets", notice: 'Budget Created!'
+      redirect_to "/budgets/#{@budget.id}", notice: 'Budget Created!'
     else
       render 'new'
     end
