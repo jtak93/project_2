@@ -15,6 +15,7 @@
       <%= render "new_budget_modal" %>
       <%= render "edit_budget_modal" %>
       <%= render "show_expenses_modal" %>
+      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/budgets/<%= params[:id] %>/delete'">Delete</button>
     </div>
   </div>
   <div class="jumbotron" id="annual">

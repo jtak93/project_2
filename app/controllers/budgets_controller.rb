@@ -23,6 +23,7 @@ class BudgetsController < ApplicationController
     @edit_path = "budgets/edit_budget"
     @expenses_path = "expenses/expenses_display"
     @new_budget_path = "budgets/new_budget"
+    @new_expense_path = "expenses/new_expense_form"
   end
 
   def new
@@ -51,12 +52,20 @@ class BudgetsController < ApplicationController
   end
 
   def destroy
+    @budget = Budget.find_by(id: params[:id])
+    @budget.destroy
+    redirect_to "/users/#{current_user.id}"
   end
+
 
 private
 
   def budget_params
     params.require(:budget).permit(:budget_type, :budget, :budget_date)
+  end
+
+  def expense_params
+    params.require(:expense).permit(:amount, :expense_date, :budget_id, :expense_category_id)
   end
 
 end

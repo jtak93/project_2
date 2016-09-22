@@ -1,0 +1,25 @@
+  <%= form_for @expense, url: {action: "create_ex"} do |f| %>
+  <% if @expense.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @expense.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :category %>
+    <%= f.select(:expense_category_id, [['Housing', 1], ['Automobile', 2], ['Food', 3]]) %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %>
+    <%= f.number_field :amount, :class => 'text_field', min: 0, :step => 0.01 %>
+  </div>
+  <div class="field">
+    <%= f.label :expense_date %>
+    <%= f.date_select :expense_date%>
+  </div>
+  <div class="actions"><%= f.submit "Add Expense" %></div>
+  <% end %>

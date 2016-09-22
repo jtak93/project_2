@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :expenses
   end
 
+  get '/budgets/:id/delete' => 'budgets#destroy'
+
   resources :sessions, only: [:new, :create, :destroy]
   get '/login'  => 'sessions#new'
   get '/logout' => 'sessions#destroy'
