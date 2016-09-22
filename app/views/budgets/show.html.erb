@@ -1,10 +1,10 @@
-
 <div class="container">
   <div class="jumbotron" id="monthly">
     <div class="container">
       <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Monthly Budgets
-        <span class="caret"></span></button>
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+          Monthly Budgets <span class="caret"></span>
+        </button>
         <ul class="dropdown-menu">
           <% @current_year_budgets_order.each do |b| %>
           <li><a href=<%= "/budgets/#{b.id}" %>><%= b.budget_date.strftime("%B, %Y") %></a></li>
@@ -15,11 +15,27 @@
       <%= render "new_budget_modal" %>
       <%= render "edit_budget_modal" %>
       <%= render "show_expenses_modal" %>
-      <button type="button" class="btn btn-info btn-lg" onclick="window.location.href='/budgets/<%= params[:id] %>/delete'">Delete</button>
+      <%= link_to "Delete", budget_path(@current_budget), method: :delete, confirm: "Are you sure?" %>
     </div>
   </div>
   <div class="jumbotron" id="annual">
     <div class="container">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+          Annual Budgets <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <% if @last_year_budget %>
+            <li><a href=<%= "/budgets/#{@last_year_budget.id}" %>><%= @last_year_budget.budget_date.strftime("%Y") %></a></li>
+          <% end %>
+          <% if @current_budget %>
+          <li><a href=<%= "/budgets/#{@current_budget.id}" %>><%= @current_budget.budget_date.strftime("%Y") %></a></li>
+          <% end %>
+          <% if @next_year_budget %>
+          <li><a href=<%= "/budgets/#{@next_year_budget.id}" %>><%= @next_year_budget.budget_date.strftime("%Y") %></a></li>
+          <% end %>
+        </ul>
+      </div>
       <%= render "annual_progress" %>
     </div>
   </div>

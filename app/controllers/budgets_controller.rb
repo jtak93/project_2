@@ -6,8 +6,12 @@ class BudgetsController < ApplicationController
   def show
     @new_budget = Budget.new
     @budgets = current_user.budgets
+    @budgets_in_order = Budget.order(:budget_date).where(user_id: current_user.id)
     @current_year_budgets = @budgets.select { |budget| budget.budget_date.year == Date.current.year }
-    @current_year_budgets_order = Budget.order(:budget_date).where(user_id: current_user.id).select { |budget| budget.budget_date.year == Date.current.year }
+    @last_year_budget = @budgets_in_order.select { |budget| budget.budget_date.year == (Date.current.year - 1) }.first
+    @current_year_budget = @budgets.select { |budget| budget.budget_date.year == Date.current.year }.first
+    @next_year_budget = @budgets_in_order.select { |budget| budget.budget_date.year == (Date.current.year + 1) }.first
+    @current_year_budgets_order = @budgets_in_order.select { |budget| budget.budget_date.year == Date.current.year }
     @annual_budget_projection = @current_year_budgets.map(&:budget).reduce(&:+).round(2)
     @annual_expenses = @current_year_budgets.map(&:expense_total).reduce(&:+).round(2)
     if @annual_expenses == nil
@@ -15,10 +19,13 @@ class BudgetsController < ApplicationController
     end
     @current_budget = @budgets.find(params[:id])
     @expenses = @current_budget.expenses
+
+    # percentage calculations for progress bar
     unless @current_budget == nil
       @month_percentage = ((@current_budget.expense_total/@current_budget.budget) * 100).round(2)
       @annual_percentage = ((@annual_expenses / @annual_budget_projection) * 100).round(2)
     end
+
     #for modal views
     @edit_path = "budgets/edit_budget"
     @expenses_path = "expenses/expenses_display"
@@ -48,7 +55,7 @@ class BudgetsController < ApplicationController
   def update
     @budget = Budget.find_by(id: params[:id])
     @budget.update(budget_params)
-    redirect_to "/budgets"
+    redirect_to "/budgets/#{@budget.id}"
   end
 
   def destroy
@@ -67,5 +74,6 @@ private
   def expense_params
     params.require(:expense).permit(:amount, :expense_date, :budget_id, :expense_category_id)
   end
+
 
 end
