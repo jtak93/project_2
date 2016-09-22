@@ -1,29 +1,47 @@
-== README
-HEROKU LINK
+## Gint
+
+Gint is a personal budgeting app that allows you to track monthly budgets and expenses. This will allow users to see where their money is going by category and plan their monthly spending accordingly.
+
+## Motivation
+
+This web application is my first full stack application created using the loved and hated Ruby on Rails framework. The project was created during my WDI program at General Assembly. The work duration of the project was approximately one week.
+
+## Getting Started
+
+The app can be found at:
+
+```
 https://vast-scrubland-42647.herokuapp.com/
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+```
 
-* Ruby version
+## Technologies used
 
-* System dependencies
+* HTML5, CSS3, SCSS, JS
+* Ruby, mainly using the ruby on rails framework, to build the majority of the application
+* Postgresql and ActiveRecord for back end design, query, and manipulation
+* Git and Github for version control
+* Heroku for deployment
 
-* Configuration
+## Icebox Features
 
-* Database creation
+Trello - [Rails Project](https://trello.com/b/5iqIi2xT/rails-project)
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+See my ICEBOX for what is to come
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+## Unsolved Problems/Bugs
+
+* Unable to display different year's annual and monthly budgets
+* If budgets are deleted, site breaks
+
+
+## Authors
+
+* **James Tak** - *Creator* - [jtak93](https://github.com/jtak93)
+
+
+## Shout Outs
+
+* General Assembly WDI-DTLA-37!
+* Phil, Jim, and Ezra
