@@ -1,20 +1,24 @@
 <div class="container">
   <% @sum = 0 %>
-  <% @expenses.each do |e| %>
-    <p>
-      Expense id: <%= e.id %>
-      &nbsp;&nbsp; | &nbsp;&nbsp;
-      <%= e.amount %>
-      &nbsp;&nbsp; | &nbsp;&nbsp;
-      <%= e.expense_category[:expense_category] %>
-      &nbsp;&nbsp; | &nbsp;&nbsp;
-      <%= link_to 'Edit Expense', "/budgets/#{params[:id]}/expenses/#{e.id}/edit" %>
-      <%= link_to 'Destroy', "/budgets/#{params[:id]}/expenses/#{e.id}", method: :delete, data: { confirm: 'Are you sure?' } %>
-    </p>
-    <% @sum += e.amount %>
-  <% end %>
+    <table style="width:100%" class="table-bordered">
+      <tr>
+        <th>Cost</th>
+        <th>Category</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+      <tr>
+        <% @expenses.each do |e| %>
+        <td><%= e.amount %></td>
+        <td><%= e.expense_category[:expense_category] %></td>
+        <td><%= link_to 'Edit Expense', "/budgets/#{params[:id]}/expenses/#{e.id}/edit" %></td>
+        <td><%= link_to 'Destroy', "/budgets/#{params[:id]}/expenses/#{e.id}", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+        <% @sum += e.amount %>
+        <% end %>
+    </table>
   <p>
-    Sum:
+    Total Expenses:
     &nbsp;&nbsp; | &nbsp;&nbsp;
     <%= @sum %>
   </p>
