@@ -1,4 +1,4 @@
-<h2>Goal For Fiscal Year: <%= Date.current.strftime("%Y") %></h2>
+<h2>Projection for Year: <%= @current_budget.budget_date.strftime("%Y") %></h2>
 <h6>Budget Used:</h6>
 <% if @annual_percentage < 40 %>
   <div class="progress">

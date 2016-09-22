@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
 
   def show
-    redirect_to budget_path
-
+    @budgets_in_order = Budget.order(:budget_date).where(user_id: current_user.id)
+    @budget = @budgets_in_order.select { |budget| budget.budget_date.year == Date.current.year }.first
+    redirect_to budget_path(@budget)
   end
 
   def new
