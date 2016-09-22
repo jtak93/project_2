@@ -33,9 +33,26 @@
 }
 
 .welcome {
-    text-align: center;
-  }
+  text-align: center;
+}
 .navbar-custom {
-    background-color: rgba(30,30,30,1);
+  background-color: rgba(30,30,30,1);
 }
 
+.modal-body {
+  background-color: rgba(30,30,30,1);
+  input {
+    color: black;
+  }
+  select {
+    color: black;
+  }
+}
+
+.modal-header {
+  background-color: rgba(30,30,30,1);
+}
+
+.modal-footer {
+  background-color: rgba(30,30,30,1);
+}

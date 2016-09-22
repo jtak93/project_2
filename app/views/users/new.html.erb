@@ -1,5 +1,5 @@
 <div class="container" id="sign-up-form">
-  <div class="span3 well">
+  <div class="col-md-12 span 3 well">
     <h1>Sign Up</h1>
     <%= form_for @user do |f| %>
       <% if @user.errors.any? %>
@@ -12,19 +12,38 @@
           </ul>
         </div>
       <% end %>
-      <div class="field">
-        <%= f.label :email %>
-        <%= f.text_field :email, id: "sign-up-email" %>
-      </div>
-      <div class="field">
-        <%= f.label :password %>
-        <%= f.password_field :password, id: "sign-up-password" %>
-      </div>
-      <div class="field">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, id: "sign-up-password-confirm" %>
-      </div>
-      <div class="actions"><%= f.submit "Sign Up" %></div>
+        <div class="field">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <%= f.label :email %>
+          </div>
+          <div class="col-md-6">
+            <%= f.text_field :email, id: "sign-up-email" %>
+          </div>
+        </div>
+        <div class="field">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <%= f.label :password %>
+          </div>
+          <div class="col-md-6">
+            <%= f.password_field :password, id: "sign-up-password" %>
+          </div>
+        </div>
+        <div class="field">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <%= f.label :confirm_PW %>
+          </div>
+          <div class="col-md-6">
+            <%= f.password_field :password_confirmation, id: "sign-up-password-confirm" %>
+          </div>
+        </div>
+        <div class="col-md-5"></div>
+        <div class="col-md-6">
+          <div class="actions"><%= f.submit "Sign Up" %></div>
+        </div>
+        <div class="col-md-2"></div>
     <% end %>
   </div>
 </div>
