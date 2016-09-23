@@ -11,7 +11,7 @@
   <% end %>
   <div class="field">
     <%= f.label :category %>
-    <%= f.select(:expense_category_id, [['Housing', 1], ['Automobile', 2], ['Food', 3]]) %>
+    <%= f.collection_select(:expense_category_id, ExpenseCategory.all, :id, :expense_category) %>
   </div>
   <div class="field">
     <%= f.label :amount %>
